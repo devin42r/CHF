@@ -1,0 +1,18 @@
+<%inherit file="app_base.htm" />
+
+<%block name="title">Account Information</%block>
+
+${ error_message }
+
+<%block name="content">
+
+    <h1>Change Password for: ${ user.first_name } ${ user.last_name }</h1>
+
+     <form action="/account/pchange/" role="form" method="POST">
+         <table>
+            ${ form }
+         </table>
+      <input type="submit" value="Submit" class="btn btn-default"/>
+    </form>
+    <br>
+</%block>

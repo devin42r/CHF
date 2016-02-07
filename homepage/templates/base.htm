@@ -1,0 +1,94 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+
+## set up a StaticRenderer object to enable the CSS/JS automatic inclusion magic.
+<%! from django_mako_plus.controller import static_files %>
+<%! import datetime %>
+<%  static_renderer = static_files.StaticRenderer(self) %>
+
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <head>
+
+    <link href="${ STATIC_URL }homepage/media/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title><%block name="title">Colonial Heritage Foundation</%block></title>
+    
+    ## add any site-wide scripts or CSS here; for example, jquery:
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script src="${ STATIC_URL }homepage/media/jquery.loadmodal.js"></script>
+      <script src="${ STATIC_URL }homepage/media/jquery.form.min.js"></script>
+
+    <link rel="stylesheet" href="${ STATIC_URL }homepage/media/Bootstrap3/css/bootstrap.min.css" />
+  
+    ## render the css with the same name as this page
+    ${ static_renderer.get_template_css(request, context)  }
+  
+  </head>
+
+  <body>
+    <%block name="main_body">
+
+      <header>
+        <%block name="header">
+
+          <div id="maintenance_message">
+
+              <%block name="maintenance">Site will go down tomorrow!</%block>
+          </div>
+
+            <%block name="navbar">
+
+                <%block name="username"></%block>
+
+            </%block>
+        </%block>
+      </header>
+
+          <div id="alert" class="alert alert-info">
+              <%block name="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+              </%block>
+          </div>
+
+
+            <div class="container clearfix">
+                <div class="row">
+                    <%block name ="top">
+
+                    </%block>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <%block name="content_left">
+
+                        </%block>
+                    </div>
+                    <div class="col-md-8">
+                        <%block name="content">
+                            CENTER AREA
+                        </%block>
+                    </div>
+                    <div class="col-md-2">
+                        <%block name="content_right">
+
+                        </%block>
+                    </div>
+                </div>
+            </div>
+
+    </%block>
+
+    <footer id="footer" style="text-align:center">
+      <%block name="footer">
+        <p class="footer-text">Copyright &copy; Devin Rasmussen ${ datetime.date.today().year }
+      </%block>
+    </footer>
+
+    <script src="${ STATIC_URL }homepage/media/Bootstrap3/js/bootstrap.min.js"></script>
+
+    ## render the JS with the same name as this page
+    ${ static_renderer.get_template_js(request, context)  }
+  
+  </body>
+</html>

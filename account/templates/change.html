@@ -1,0 +1,17 @@
+<%inherit file="app_base.htm" />
+
+<%block name="title">Change</%block>
+
+${ error_message }
+
+<%block name="content">
+    <br>
+
+     <form action="/account/change/" role="form" method="POST">
+         <table>
+            ${ form }
+         </table>
+      <input type="submit" value="Submit" class="btn btn-default"/>
+    </form>
+    <br>
+</%block>
