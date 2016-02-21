@@ -45,15 +45,15 @@ class SignupForm(forms.Form):
     first_name = forms.CharField(label='First Name', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
     last_name = forms.CharField(label='Last Name', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
     email = forms.EmailField(label='Email', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
-    password = forms.CharField(label='Password', required=True, max_length=100, widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm Password', required=True, max_length=100, widget=forms.PasswordInput)
+    password = forms.CharField(label='Password', required=True, max_length=100, widget=forms.PasswordInput(attrs={ "class": "form-control" }))
+    password2 = forms.CharField(label='Confirm Password', required=True, max_length=100, widget=forms.PasswordInput(attrs={ "class": "form-control" }))
     address = forms.CharField(label='Address 1', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
     address2 = forms.CharField(label='Address 2', required=False, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        if not username.lower().strip().startswith('a'):
-            raise forms.ValidationError('Please start your username with the letter"a".')
+        # if not username.lower().strip().startswith('a'):
+        #     raise forms.ValidationError('Please start your username with the letter"a".')
 
         # check availability of username
         try:

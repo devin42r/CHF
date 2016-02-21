@@ -29,9 +29,9 @@ def process_request(request):
 
 class pChangeForm(forms.Form):
     '''The pchange form'''
-    currentPassword = forms.CharField(label='Current Password', required=True, max_length=100, widget=forms.PasswordInput)
-    password = forms.CharField(label='New Password', required=True, max_length=100, widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm Password', required=True, max_length=100, widget=forms.PasswordInput)
+    currentPassword = forms.CharField(label='Current Password', required=True, max_length=100, widget=forms.PasswordInput(attrs={ "class": "form-control"}))
+    password = forms.CharField(label='New Password', required=True, max_length=100, widget=forms.PasswordInput(attrs={ "class": "form-control"}))
+    password2 = forms.CharField(label='Confirm Password', required=True, max_length=100, widget=forms.PasswordInput(attrs={ "class": "form-control" }))
 
         # def clean_username(self):
         #     username = self.cleaned_data.get('username')

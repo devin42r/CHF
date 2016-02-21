@@ -1,0 +1,23 @@
+<%inherit file="app_base.htm" />
+
+<%block name="title">CHF Edit Product</%block>
+
+<%block name="content">
+
+    <span id="product_type" class="hidden">${ product.polymorphic_ctype }</span>
+
+    <h1 class="center">Edit ${ product.name }</h1>
+    <h4 class="center"></h4>
+    <form method="POST" role="form">
+        <table id="myform">
+            ${ form.as_table() }
+        </table>
+        <div class="row">
+            <div class="col-md-2">
+                <input type="submit" class="btn btn-warning" value="Save" />
+            </div>
+        </div>
+    </form>
+
+
+</%block>

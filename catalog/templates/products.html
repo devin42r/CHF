@@ -1,0 +1,64 @@
+<%! from catalog import models as amod %>
+
+<%inherit file="app_base.htm" />
+
+<%block name="title">CHF Current Products</%block>
+
+<%block name="content">
+
+    <p class="text-right"><a href="/catalog/products.create/" class="btn btn-primary">Create Product</a></p>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Picture</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+
+        %for product in products:
+            <tr>
+                <td>${ product.name }</td>
+                <td>${ product.polymorphic_ctype }</td>
+                <td>${ product.image }</td>
+                <td>
+                    %if isinstance(product, amod.BulkProduct):
+                        ${ product.quantity }
+                        <a href="#" class="btn btn-warning">Update</a>
+                    %endif
+                </td>
+                <td>
+                    <a href="/catalog/products.edit/${ product.id }">Edit</a>
+                    |
+                    <a class="delete" href="/catalog/products.delete/${ product.id }">Delete</a>
+                </td>
+            </tr>
+        %endfor
+
+    </table>
+
+    <!-- Modal -->
+        <div id="delete_modal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="MyModalLabel">Are You Sure?</h4>
+              </div>
+              <div class="modal-body">
+                <p>Delete ${ product.polymorphic_ctype } ${ product.name }</p>
+              </div>
+              <div class="modal-footer">
+                <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+</%block>
+

@@ -1,0 +1,20 @@
+<%inherit file="app_base.htm" />
+
+<%block name="title">CHF Edit User</%block>
+
+<%block name="content">
+
+    <h1 class="center">Edit User</h1>
+    <form method="POST" role="form">
+        <table id="myform">
+            ${ form.as_table() }
+        </table>
+        <div class="row">
+            <div class="col-md-2">
+                <input type="submit" class="btn btn-warning" value="Save" />
+            </div>
+            <a href="/manager/users.password.change/${ users.id }">Edit Password</a>
+        </div>
+    </form>
+
+</%block>

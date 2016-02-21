@@ -1,0 +1,16 @@
+<%inherit file="app_base.htm" />
+
+<%block name="title">CHF Create Product</%block>
+
+<%block name="content">
+
+    <h1 class="center">Create Product</h1>
+
+    <form method="POST">
+        <table id="myform">
+            ${ form.as_table() }
+        </table>
+        <input type="submit" class="btn btn-warning" value="Save" />
+    </form>
+
+</%block>

@@ -40,6 +40,12 @@ INSTALLED_APPS = [
     'django_mako_plus.controller',
     'homepage',
     'account',
+    'manager',
+    'catalog',
+    'event',
+    'bootstrap3_datetime',
+    'polymorphic',
+    'form_utils',
 ]
 
 MIDDLEWARE_CLASSES = [
