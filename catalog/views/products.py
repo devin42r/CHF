@@ -2,7 +2,7 @@ from django.conf import settings
 from django_mako_plus.controller import view_function
 from .. import dmp_render, dmp_render_to_response
 from django import forms
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from catalog import models as amod
 from catalog import models as mmod
 from account import models as accmod
@@ -16,16 +16,10 @@ import random
 
 @view_function
 def process_request(request):
-    # bulkproducts = amod.BulkProduct.objects.all().order_by('name')
-    # individualproducts = amod.IndividualProduct.objects.all().order_by('name')
-    # rentalproducts = amod.RentalProduct.objects.all().order_by('name')
     products = amod.Product.objects.all()
 
     template_vars = {
         'products': products,
-        # 'bulkproducts': bulkproducts,
-        # 'individualproducts': individualproducts,
-        # 'rentalproducts': rentalproducts,
     }
 
     return dmp_render_to_response(request, 'products.html', template_vars)
@@ -57,15 +51,6 @@ def edit(request):
 
             p.creator = form.cleaned_data.get('creator')
             p.status = form.cleaned_data.get('status')
-
-            # if form.cleaned_data.get('status') == 'current':
-            #     p.status = 'Rentable'
-            # elif form.cleaned_data.get('status') == 'damaged':
-            #     p.status = 'Damaged'
-            # elif form.cleaned_data.get('status') == 'retired':
-            #     p.status = 'No Longer Rentable'
-            # elif form.cleaned_data.get('status') == 'dirty':
-            #     p.status = 'Dirty'
 
             p.name = form.cleaned_data.get('name')
             p.description = form.cleaned_data.get('description')
@@ -111,13 +96,12 @@ def create(request):
         print('submitted form')
         form = CreateForm(request.POST)
         if form.is_valid():
-            print('>>>>>>>>>>>>>>>>>> THE FORM IS VALID?')
             if form.cleaned_data.get('product_type') == 'BP':
-                print('>>>>>>>>>>>>>>>>>> IN THE BP?')
                 p = mmod.BulkProduct()
                 p.quantity = form.cleaned_data.get('quantity')
             elif form.cleaned_data.get('product_type') == 'IP':
                 p = mmod.IndividualProduct()
+                p.create_date = form.cleaned_data.get('create_date')
                 p.creator = form.cleaned_data.get('creator')
             else:
                 p = mmod.RentalProduct()
@@ -142,10 +126,6 @@ def create(request):
                 # print('>>>>>>>' + hey)
                 #
                 # # Let's get the dictionary value of status
-                # def get_item(dictionary, key):
-                #     return dictionary.get(key)
-                # george = form.cleaned_data['status']
-                # # mmod.RENTAL_STATUS_CHOICES|get_item:george
                 #
                 #
                 # # george = mmod.RENTAL_STATUS_CHOICES_MAP(george)
@@ -153,7 +133,11 @@ def create(request):
 
             p.name = form.cleaned_data.get('name')
             p.description = form.cleaned_data.get('description')
-            p.image = form.cleaned_data.get('image')
+            p.image = form.cleaned_data.ge
+                # def get_item(dictionary, key):
+                #     return dictionary.get(key)
+                # george = form.cleaned_data['status']
+                # # mmod.RENTAL_STATUS_CHOICES|get_item:georget('image')
             p.category = mmod.Category.objects.get(id=1)
             p.save()
             return HttpResponseRedirect('/catalog/products')
@@ -179,7 +163,8 @@ class CreateForm(forms.Form):
     quantity = forms.CharField(label='Quantity', required=False, max_length=100, widget=forms.TextInput(attrs={"class":"form-control hideThis", "id":"quantity"}))
     description = forms.CharField(label='Description', required=True, max_length=1000, widget=forms.Textarea(attrs={"class":"form-control"}))
     image = forms.CharField(label='Image', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
-
+    create_date = forms.DateField(label='Create Date', required=False,input_formats=[ '%Y-%m-%d' ], widget=forms.TextInput(attrs={"class":"form-control", "id":"datetimepicker"}))
+    # birth = forms.DateField(label='Birth', required=False, input_formats=[ '%Y-%m-%d' ], widget=forms.TextInput(attrs={"class":"form-control", "id":"datetimepicker"}))
     # creator = forms.CharField(label='Creator', required=False, max_length=100, widget=forms.TextInput(attrs={"class":"form-control hideThis", "id":"creator"}))
 
     def clean_name(self):
@@ -195,7 +180,6 @@ class CreateForm(forms.Form):
 @view_function
 def delete(request):
     '''Deletes a product'''
-    print('were here')
     try:
         product = amod.Product.objects.get(id=request.urlparams[0])
     except amod.Product.DoesNotExist:
@@ -204,3 +188,13 @@ def delete(request):
     product.delete()
 
     return HttpResponseRedirect('/catalog/products')
+
+@view_function
+def getquantity(request):
+    '''update quntity'''
+    try:
+        product = amod.Product.objects.get(id=request.urlparams[0])
+    except amod.Product.DoesNotExist:
+        return HttpResponseRedirect('/catalog/products')
+
+    return HttpResponse(product.quantity)

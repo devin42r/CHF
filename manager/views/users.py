@@ -32,7 +32,7 @@ def edit(request):
         users = amod.User.objects.get(id=request.urlparams[0])
         print('\nUSER: ' + users.first_name)
     except amod.User.DoesNotExist:
-        return HttpResponseRedirect('manager/users/')
+        return HttpResponseRedirect('/manager/users/')
     form = EditForm(initial=model_to_dict(users))
 
     if request.method == 'POST': # just submitted the form
@@ -46,7 +46,7 @@ def edit(request):
             u.email = form.cleaned_data.get('email')
             u.address1 = form.cleaned_data.get('address')
             u.address2 = form.cleaned_data.get('address2')
-            # u.city = form.cleaned_data.get('city')
+            u.city = form.cleaned_data.get('city')
             u.birth = form.cleaned_data.get('birth')
             u.save()
             u.groups.clear()
@@ -58,7 +58,7 @@ def edit(request):
 
             u.user_permissions.clear()
 
-            for permission in form.cleaned_data['permissions']:
+            for permission in form.cleaned_data['user_permissions']:
                 u.user_permissions.add(permission)
 
             u.save()
@@ -83,11 +83,11 @@ class EditForm(forms.Form):
     email = forms.EmailField(label='Email', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
     address1 = forms.CharField(label='Address 1', required=False, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
     address2 = forms.CharField(label='Address 2', required=False, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
-    # city = forms.CharField(label='City', required=False, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
+    city = forms.CharField(label='City', required=False, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
     birth = forms.DateField(label='Birth', required=False, input_formats=[ '%Y-%m-%d' ], widget=forms.TextInput(attrs={"class":"form-control", "id":"datetimepicker"}))
     phone_number = forms.CharField(label='Phone Number', required=False, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
     groups = forms.ModelMultipleChoiceField(label='Group', required=False, queryset=Group.objects.all(), widget=forms.CheckboxSelectMultiple)
-    permissions = forms.ModelMultipleChoiceField(label='Permissions', required=False, queryset=Permission.objects.all(), widget=forms.CheckboxSelectMultiple)
+    user_permissions = forms.ModelMultipleChoiceField(label='Permissions', required=False, queryset=Permission.objects.all(), widget=forms.CheckboxSelectMultiple)
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
@@ -114,7 +114,7 @@ def create(request):
             u.first_name = form.cleaned_data.get('first_name')
             u.last_name = form.cleaned_data.get('last_name')
             u.email = form.cleaned_data.get('email')
-            u.set_password(form.cleaned_data.get('password'))
+            u.city = form.cleaned_data.get('city')
             u.birth(form.cleaned_data.get('birth'))
             u.address1 = form.cleaned_data.get('address')
             u.address2 = form.cleaned_data.get('address2')

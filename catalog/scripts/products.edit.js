@@ -21,3 +21,4 @@ $(function() {
         $('h4').text('Rental Product')
     }
 });
+

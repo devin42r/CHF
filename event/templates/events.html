@@ -1,0 +1,57 @@
+<%inherit file="app_base.htm" />
+
+<%block name="title">CHF Current Events</%block>
+
+<%block name="content">
+
+    <p class="text-right"><a href="/event/events.create/" class="btn btn-primary">Create Event</a></p>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Venue</th>
+            <th>Action</th>
+        </tr>
+
+        %for event in events:
+            <tr>
+                <td>${ event.name }</td>
+                <td>${ event.description }</td>
+                <td>${ event.start_date }</td>
+                <td>${ event.end_date }</td>
+                <td>${ event.venue }<td>
+                    <a href="/event/events.edit/${ event.id }">Edit</a>
+                    |
+                    <a class="delete" href="/event/events.delete/${ event.id }">Delete</a>
+                </td>
+            </tr>
+        %endfor
+    </table>
+
+    <!-- Modal -->
+        <div id="delete_modal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="MyModalLabel">Are You Sure?</h4>
+              </div>
+              <div class="modal-body">
+                <p>Delete the event</p>
+              </div>
+              <div class="modal-footer">
+                <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+</%block>
+

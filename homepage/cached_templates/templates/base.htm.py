@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1455744451.751445
+_modified_time = 1456188296.5303636
 _enable_loop = True
 _template_filename = '/home/devin/PycharmProjects/CHF/homepage/templates/base.htm'
 _template_uri = 'base.htm'
 _source_encoding = 'utf-8'
 import os, os.path, re, json
-_exports = ['footer', 'username', 'content_left', 'content_right', 'title', 'header', 'maintenance', 'main_body', 'content', 'navbar', 'alert', 'top']
+_exports = ['header', 'content_left', 'main_body', 'username', 'content', 'title', 'navbar', 'content_right', 'footer', 'maintenance', 'top']
 
 
 # SOURCE LINE 4
@@ -23,33 +23,31 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        request = context.get('request', UNDEFINED)
-        def footer():
-            return render_footer(context._locals(__M_locals))
         def main_body():
             return render_main_body(context._locals(__M_locals))
-        def username():
-            return render_username(context._locals(__M_locals))
-        self = context.get('self', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def content_left():
-            return render_content_left(context._locals(__M_locals))
-        def content_right():
-            return render_content_right(context._locals(__M_locals))
-        def title():
-            return render_title(context._locals(__M_locals))
-        def header():
-            return render_header(context._locals(__M_locals))
-        def maintenance():
-            return render_maintenance(context._locals(__M_locals))
+        def footer():
+            return render_footer(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
+        def maintenance():
+            return render_maintenance(context._locals(__M_locals))
         def navbar():
             return render_navbar(context._locals(__M_locals))
-        def alert():
-            return render_alert(context._locals(__M_locals))
+        def header():
+            return render_header(context._locals(__M_locals))
+        def content_left():
+            return render_content_left(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def username():
+            return render_username(context._locals(__M_locals))
         def top():
             return render_top(context._locals(__M_locals))
+        def title():
+            return render_title(context._locals(__M_locals))
+        def content_right():
+            return render_content_right(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n')
@@ -120,83 +118,17 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_footer(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def footer():
-            return render_footer(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 87
-        __M_writer('\n        <p class="footer-text">Copyright &copy; Devin Rasmussen ')
-        # SOURCE LINE 88
-        __M_writer(str( datetime.date.today().year ))
-        __M_writer('\n      ')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_username(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def username():
-            return render_username(context)
-        __M_writer = context.writer()
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_content_left(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def content_left():
-            return render_content_left(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 67
-        __M_writer('\n\n                        ')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_content_right(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def content_right():
-            return render_content_right(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 77
-        __M_writer('\n\n                        ')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def title():
-            return render_title(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 14
-        __M_writer('Colonial Heritage Foundation')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 def render_header(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def username():
-            return render_username(context)
-        def navbar():
-            return render_navbar(context)
         def header():
             return render_header(context)
         def maintenance():
             return render_maintenance(context)
+        def navbar():
+            return render_navbar(context)
+        def username():
+            return render_username(context)
         __M_writer = context.writer()
         # SOURCE LINE 36
         __M_writer('\n\n          <div id="maintenance_message">\n\n              ')
@@ -217,14 +149,14 @@ def render_header(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_maintenance(context,**pageargs):
+def render_content_left(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def maintenance():
-            return render_maintenance(context)
+        def content_left():
+            return render_content_left(context)
         __M_writer = context.writer()
-        # SOURCE LINE 40
-        __M_writer('Site will go down tomorrow!')
+        # SOURCE LINE 67
+        __M_writer('\n\n                        ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -235,24 +167,22 @@ def render_main_body(context,**pageargs):
     try:
         def main_body():
             return render_main_body(context)
-        def username():
-            return render_username(context)
-        def content_left():
-            return render_content_left(context)
-        def content_right():
-            return render_content_right(context)
-        def header():
-            return render_header(context)
-        def maintenance():
-            return render_maintenance(context)
         def content():
             return render_content(context)
+        def maintenance():
+            return render_maintenance(context)
         def navbar():
             return render_navbar(context)
-        def alert():
-            return render_alert(context)
+        def header():
+            return render_header(context)
+        def content_left():
+            return render_content_left(context)
+        def username():
+            return render_username(context)
         def top():
             return render_top(context)
+        def content_right():
+            return render_content_right(context)
         __M_writer = context.writer()
         # SOURCE LINE 33
         __M_writer('\n\n      <header>\n        ')
@@ -261,13 +191,9 @@ def render_main_body(context,**pageargs):
         
 
         # SOURCE LINE 48
-        __M_writer('\n      </header>\n\n          <div id="alert" class="alert alert-info">\n              ')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'alert'):
-            context['self'].alert(**pageargs)
-        
-
-        # SOURCE LINE 55
-        __M_writer('\n          </div>\n\n\n            <div class="container clearfix">\n                <div class="row">\n                    ')
+        __M_writer('\n      </header>\n\n')
+        # SOURCE LINE 57
+        __M_writer('\n\n            <div class="container clearfix">\n                <div class="row">\n                    ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'top'):
             context['self'].top(**pageargs)
         
@@ -297,6 +223,17 @@ def render_main_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_username(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def username():
+            return render_username(context)
+        __M_writer = context.writer()
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -310,13 +247,26 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def title():
+            return render_title(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 14
+        __M_writer('Colonial Heritage Foundation')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_navbar(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def username():
-            return render_username(context)
         def navbar():
             return render_navbar(context)
+        def username():
+            return render_username(context)
         __M_writer = context.writer()
         # SOURCE LINE 43
         __M_writer('\n\n                ')
@@ -331,14 +281,43 @@ def render_navbar(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_alert(context,**pageargs):
+def render_content_right(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def alert():
-            return render_alert(context)
+        def content_right():
+            return render_content_right(context)
         __M_writer = context.writer()
-        # SOURCE LINE 52
-        __M_writer('\n                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>\n                <strong>Info!</strong> This alert box could indicate a neutral informative change or action.\n              ')
+        # SOURCE LINE 77
+        __M_writer('\n\n                        ')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_footer(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def footer():
+            return render_footer(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 87
+        __M_writer('\n        <p class="footer-text">Copyright &copy; Devin Rasmussen ')
+        # SOURCE LINE 88
+        __M_writer(str( datetime.date.today().year ))
+        __M_writer('\n      ')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_maintenance(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def maintenance():
+            return render_maintenance(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 40
+        __M_writer('Site will go down tomorrow!')
         return ''
     finally:
         context.caller_stack._pop_frame()

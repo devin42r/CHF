@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1456031745.4228945
+_modified_time = 1456205834.6289485
 _enable_loop = True
 _template_filename = '/home/devin/PycharmProjects/CHF/catalog/templates/products.html'
 _template_uri = 'products.html'
 _source_encoding = 'utf-8'
 import os, os.path, re, json
-_exports = ['title', 'content']
+_exports = ['content', 'title']
 
 
 # SOURCE LINE 1
@@ -31,12 +31,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        def content():
+            return render_content(context._locals(__M_locals))
         def title():
             return render_title(context._locals(__M_locals))
         products = context.get('products', UNDEFINED)
         isinstance = context.get('isinstance', UNDEFINED)
-        def content():
-            return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n\n')
         # SOURCE LINE 3
@@ -51,21 +51,8 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 63
+        # SOURCE LINE 65
         __M_writer('\n\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_title(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def title():
-            return render_title(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 5
-        __M_writer('CHF Current Products')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -74,10 +61,10 @@ def render_title(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        products = context.get('products', UNDEFINED)
-        isinstance = context.get('isinstance', UNDEFINED)
         def content():
             return render_content(context)
+        products = context.get('products', UNDEFINED)
+        isinstance = context.get('isinstance', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 7
         __M_writer('\n\n    <p class="text-right"><a href="/catalog/products.create/" class="btn btn-primary">Create Product</a></p>\n\n    <table class="table table-striped">\n        <tr>\n            <th>Name</th>\n            <th>Type</th>\n            <th>Picture</th>\n            <th>Quantity</th>\n            <th>Actions</th>\n        </tr>\n\n')
@@ -97,24 +84,40 @@ def render_content(context,**pageargs):
             # SOURCE LINE 26
             if isinstance(product, amod.BulkProduct):
                 # SOURCE LINE 27
-                __M_writer('                        ')
+                __M_writer('                        <span class="quantityText">')
                 __M_writer(str( product.quantity ))
-                __M_writer('\n                        <a style="align:right" href="#" class="btn btn-warning">Update</a>\n')
-            # SOURCE LINE 30
-            __M_writer('                </td>\n                <td>\n                    <a href="/catalog/products.edit/')
+                __M_writer('</span>\n                        <button type="button" class="RefreshButton btn btn-default btn-sm" data-pid="')
+                # SOURCE LINE 28
+                __M_writer(str( product.id ))
+                __M_writer('">\n                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>\n                        </button>\n')
             # SOURCE LINE 32
-            __M_writer(str( product.id ))
-            __M_writer('">Edit</a>\n                    |\n                    <a class="delete" href="/catalog/products.delete/')
+            __M_writer('                </td>\n                <td>\n                    <a href="/catalog/products.edit/')
             # SOURCE LINE 34
             __M_writer(str( product.id ))
+            __M_writer('">Edit</a>\n                    |\n                    <a class="delete" href="/catalog/products.delete/')
+            # SOURCE LINE 36
+            __M_writer(str( product.id ))
             __M_writer('">Delete</a>\n                </td>\n            </tr>\n')
-        # SOURCE LINE 38
+        # SOURCE LINE 40
         __M_writer('\n    </table>\n\n    <!-- Modal -->\n        <div id="delete_modal" class="modal fade" tabindex="-1" role="dialog">\n          <div class="modal-dialog" role="document">\n\n            <!-- Modal content-->\n            <div class="modal-content">\n              <div class="modal-header">\n                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>\n                <h4 class="modal-title" id="MyModalLabel">Are You Sure?</h4>\n              </div>\n              <div class="modal-body">\n                <p>Delete ')
-        # SOURCE LINE 52
+        # SOURCE LINE 54
         __M_writer(str( product.polymorphic_ctype ))
         __M_writer(' ')
         __M_writer(str( product.name ))
         __M_writer('</p>\n              </div>\n              <div class="modal-footer">\n                <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>\n                <button class="btn btn-default" data-dismiss="modal">Cancel</button>\n              </div>\n            </div>\n\n          </div>\n        </div>\n\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_title(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def title():
+            return render_title(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 5
+        __M_writer('CHF Current Products')
         return ''
     finally:
         context.caller_stack._pop_frame()

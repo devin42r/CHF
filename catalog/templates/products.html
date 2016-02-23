@@ -24,8 +24,10 @@
                 <td>${ product.image }</td>
                 <td>
                     %if isinstance(product, amod.BulkProduct):
-                        ${ product.quantity }
-                        <a href="#" class="btn btn-warning">Update</a>
+                        <span class="quantityText">${ product.quantity }</span>
+                        <button type="button" class="RefreshButton btn btn-default btn-sm" data-pid="${ product.id }">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                        </button>
                     %endif
                 </td>
                 <td>

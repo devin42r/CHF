@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1455557106.4694133
+_modified_time = 1456188522.921177
 _enable_loop = True
 _template_filename = '/home/devin/PycharmProjects/CHF/manager/templates/app_base.htm'
 _template_uri = 'app_base.htm'
 _source_encoding = 'utf-8'
 import os, os.path, re, json
-_exports = ['navbar', 'menu_image']
+_exports = ['menu_image', 'navbar']
 
 
 def _mako_get_namespace(context, name):
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        def menu_image():
+            return render_menu_image(context._locals(__M_locals))
         def navbar():
             return render_navbar(context._locals(__M_locals))
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def menu_image():
-            return render_menu_image(context._locals(__M_locals))
         request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 1
@@ -41,11 +41,28 @@ def render_body(context,**pageargs):
             context['self'].navbar(**pageargs)
         
 
-        # SOURCE LINE 65
+        # SOURCE LINE 68
         __M_writer('\n\n    <div>request.path = ')
-        # SOURCE LINE 67
+        # SOURCE LINE 70
         __M_writer(str( request.path ))
         __M_writer('</div>\n\n</head>\n<body>\n\n</body>\n</html>')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_menu_image(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def menu_image():
+            return render_menu_image(context)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        __M_writer = context.writer()
+        # SOURCE LINE 18
+        __M_writer('\n                        <img src="')
+        # SOURCE LINE 19
+        __M_writer(str( STATIC_URL ))
+        __M_writer('/homepage/media/Images/CHF.png" alt="Colonial Heritage Foundation" height="50px">\n                    ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -54,11 +71,11 @@ def render_body(context,**pageargs):
 def render_navbar(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        def menu_image():
+            return render_menu_image(context)
         def navbar():
             return render_navbar(context)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def menu_image():
-            return render_menu_image(context)
         request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 6
@@ -71,26 +88,18 @@ def render_navbar(context,**pageargs):
         __M_writer('\n                </a>\n              <!--<a class="navbar-brand" href="#">Brand</a>-->\n            </div>\n\n            <!-- Collect the nav links, forms, and other content for toggling -->\n            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n              <ul class="nav navbar-nav">\n                <li class="')
         # SOURCE LINE 28
         __M_writer(str( 'active' if request.dmp_router_page == 'users' else '' ))
-        __M_writer('"><a href="/signup">Edit Users <span class="sr-only">(current)</span></a></li>\n')
-        # SOURCE LINE 61
+        __M_writer('"><a href="/manager/users">Users <span class="sr-only">(current)</span></a></li>\n                <li class="')
+        # SOURCE LINE 29
+        __M_writer(str( 'active' if request.dmp_router_page == 'products' else '' ))
+        __M_writer('"><a href="/catalog/products">Products</a></li>\n                <li class="')
+        # SOURCE LINE 30
+        __M_writer(str( 'active' if request.dmp_router_page == 'venues' else '' ))
+        __M_writer('"><a href="/event/venues">Venues</a></li>\n                <li class="')
+        # SOURCE LINE 31
+        __M_writer(str( 'active' if request.dmp_router_page == 'events' else '' ))
+        __M_writer('"><a href="/event/events">Events</a></li>\n')
+        # SOURCE LINE 64
         __M_writer('              </ul>\n            </div><!-- /.navbar-collapse -->\n          </div><!-- /.container-fluid -->\n        </nav>\n    ')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_menu_image(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def menu_image():
-            return render_menu_image(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 18
-        __M_writer('\n                        <img src="')
-        # SOURCE LINE 19
-        __M_writer(str( STATIC_URL ))
-        __M_writer('/homepage/media/Images/CHF.png" alt="Colonial Heritage Foundation" height="50px">\n                    ')
         return ''
     finally:
         context.caller_stack._pop_frame()

@@ -10,6 +10,10 @@ class Venue(models.Model):
     state = models.TextField(null=True, blank=True)
     zip_code = models.TextField(null=True, blank=True)
 
+    def __str__(self):
+        '''Prints for debuggingpurposes'''
+        return '%s' % (self.name)
+
 admin.site.register(Venue)
 
 #######################################################################################
@@ -21,6 +25,10 @@ class Event(models.Model):
     end_date = models.DateTimeField(null=True, blank=True)
     venue = models.ForeignKey(Venue)
 
+    def __str__(self):
+        '''Prints for debuggingpurposes'''
+        return '%s' % (self.name)
+
 admin.site.register(Event)
 #######################################################################################
 
@@ -29,5 +37,9 @@ class Area(models.Model):
     description = models.TextField(null=True, blank=True)
     place_number = models.TextField(null=True, blank=True)
     event = models.ForeignKey(Event)
+
+    def __str__(self):
+        '''Prints for debuggingpurposes'''
+        return '%s' % (self.name)
 
 admin.site.register(Area)

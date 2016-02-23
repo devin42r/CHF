@@ -25,7 +25,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="${ 'active' if request.dmp_router_page == 'users' else '' }"><a href="/signup">Edit Users <span class="sr-only">(current)</span></a></li>
+                <li class="${ 'active' if request.dmp_router_page == 'users' else '' }"><a href="/manager/users">Users <span class="sr-only">(current)</span></a></li>
+                <li class="${ 'active' if request.dmp_router_page == 'products' else '' }"><a href="/catalog/products">Products</a></li>
+                <li class="${ 'active' if request.dmp_router_page == 'venues' else '' }"><a href="/event/venues">Venues</a></li>
+                <li class="${ 'active' if request.dmp_router_page == 'events' else '' }"><a href="/event/events">Events</a></li>
 ##                 <li class="${ 'active' if request.dmp_router_page == 'users.edit' else '' }"><a href="/account/login">Edit User</a></li>
 ##                   <li class="${ 'active' if request.dmp_router_page == 'change.delete' else '' }"><a href="/account/change">Delete User</a></li>
 ##                 <li class="dropdown">

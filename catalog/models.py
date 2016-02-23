@@ -67,7 +67,7 @@ admin.site.register(IndividualProduct)
 
 class BulkProduct(Product):
     '''A product tracked by quantiy'''
-    quantity = models.IntegerField(default=0)
+    quantity = models.TextField(null=True, blank=True)
 
     def __str__(self):
         '''Prints for debugging purposes'''
